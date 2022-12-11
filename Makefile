@@ -15,5 +15,6 @@ clean:
 	rm -f $(OUTPUT)/$(TEXFILE).aux  $(OUTPUT)/$(TEXFILE).log  $(OUTPUT)/$(TEXFILE).out $(OUTPUT)/$(TEXFILE).bcf $(OUTPUT)/$(TEXFILE).run.xml $(OUTPUT)/$(TEXFILE).toc
 
 # Build the PDF file
-$(TEXFILE).pdf: 
-	pdflatex -output-directory=$(OUTPUT) $(TEXFILE).tex
+$(TEXFILE).pdf:
+	make mkdir output
+	make pdflatex -output-directory=$(OUTPUT) $(TEXFILE).tex
