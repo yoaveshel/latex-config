@@ -1,0 +1,123 @@
+\usepackage[english]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{csquotes}
+\usepackage{lipsum}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usepackage{graphics, setspace}
+\usepackage[nottoc, notlot, notlof]{tocbibind}
+\usepackage{biblatex}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{MnSymbol}
+
+%-------------------Math-------------------
+
+\newcommand{\op}{\text{op}}
+\newcommand{\inverse}[1]{{#1}^{-1}}
+\newcommand{\jacobson}{\mathfrak{R}}
+\newcommand{\nilrad}{\mathfrak{N}}
+\newcommand{\ev}[1]{\eval_{#1}}
+
+% Operators
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\mor}{mor}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\offset}{Offset}
+\DeclareMathOperator{\eval}{ev}
+
+%% Categories
+\newcommand{\func}[2]{[#1,#2]}
+\newcommand{\expob}[2]{{#2}^{#1}}
+\newcommand{\catname}[1]{\normalfont\mathsf{#1}}
+\newcommand{\Top}{\catname{Top}}
+\newcommand{\Set}{\catname{Set}}
+\newcommand{\Pos}{\catname{Pos}}
+\newcommand{\Rng}{\catname{Rng}}
+\newcommand{\Mon}{\catname{Mon}}
+\newcommand{\Grp}{\catname{Grp}}
+\newcommand{\Grph}{\catname{Grph}}
+\newcommand{\Cat}{\catname{Cat}}
+\newcommand{\For}{\catname{For}}
+\newcommand{\grpact}[1]{#1\text{-}\Set}
+\newcommand{\GSet}{\grpact{G}}
+\newcommand{\presheaf}[1]{\expob{{#1}^\op}{\Set}}
+\newcommand{\Fam}[1]{\catname{Fam}(#1_0)}
+\newcommand{\Dfib}[1]{\catname{DFib}\left(#1\right)}
+
+
+
+% Math Enviroments
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}
+\numberwithin{theorem}{section}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma} 
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
+\theoremstyle{definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{remarks}[theorem]{Remarks}
+\newtheorem{definition}[theorem]{Definition}
+
+\makeatletter
+\newcommand{\otherlabel}[2]{\protected@edef\@currentlabel{#2}\label{#1}}
+\makeatother
+
+\newenvironment{exercise}[1]{
+    \subsection{Exercise #1}
+    \otherlabel{ex:#1}{Exercise #1}
+}{}
+\newenvironment{solution}{\subsubsection*{Solution}}{}
+
+% Lists
+% \newlist{name}{list-type}{max-depth}
+\newlist{solutions}{enumerate}{1} % list type for different solutions
+\setlist[solutions, 1]{label = \arabic*.}
+
+\newlist{exercises}{enumerate}{1} % list type for sub-exercises
+\setlist[exercises, 1]{label = \textbf{\roman*.}}
+
+
+% Miscellenous
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+\newcommand{\qand}{\quad\text{and}\quad}
+\newcommand{\dual}[1]{#1^*}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+\newcommand{\textdef}[1]{\textit{#1}}
+
+%-------------------Bibliography-------------------
+\addbibresource{references.bib}
+
+%-------------------Titles-------------------
+\setcounter{secnumdepth}{1}
+% \titleformat{〈command 〉}[〈shape〉]{〈format〉}{〈label 〉}{〈sep〉}{〈before-code〉}[〈after-code〉]
+\titleformat{\section}{\normalfont\large\center\scshape}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\normalfont\normalsize\scshape}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}[runin]{\normalfont\bfseries}{\thesubsubsection}{}{}
