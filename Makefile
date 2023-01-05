@@ -12,9 +12,11 @@ all: $(TEXFILE).pdf
 
 # Clean up
 clean:
-	rm -f $(OUTPUT)/$(TEXFILE).aux  $(OUTPUT)/$(TEXFILE).log  $(OUTPUT)/$(TEXFILE).out $(OUTPUT)/$(TEXFILE).bcf $(OUTPUT)/$(TEXFILE).run.xml $(OUTPUT)/$(TEXFILE).toc
+	find ./$(OUTPUT)/ -regex ".*\.\(aux\|log\|out\|bcf\|xml\|toc\|bbl\|blg\|dvi\|fdb_latexmk\|fls\)" | xargs rm
+# find ./$(OUTPUT)/ -name "*.aux" -or -name "*.log" -or -name "*.out" -or -name "*.bcf" -or -name "*.run.xml" -or -name "*.toc" -or -name "*.bbl" -or -name "*.blg"  | xargs rm 
 
 # Build the PDF file
 $(TEXFILE).pdf:
-	make mkdir output
-	make pdflatex -output-directory=$(OUTPUT) $(TEXFILE).tex
+	mkdir -p $(OUTPUT)
+	latexmk -output-directory=$(OUTPUT) $(TEXFILE).tex
+	pdflatex -output-directory=$(OUTPUT) $(TEXFILE).tex
